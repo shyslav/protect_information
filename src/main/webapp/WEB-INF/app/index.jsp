@@ -1,4 +1,4 @@
-<%@ page import="com.shyslav.data.UserStorage" %><%--
+<%@ page import="webframework.entity.UserStorage" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/10/16
@@ -18,7 +18,6 @@
     <%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
     <%if(storage!=null){
         out.print(storage.getIpAddress()  + "<br>");
-        out.print(storage.getHwid()  + "<br>");
         out.print(storage.getAmounLogin()  + "<br>");
     }%>
 </div>
