@@ -1,7 +1,7 @@
 package com.shyslav.controller;
 
 import com.shyslav.utils.GlobalController;
-import webframework.entity.RoleType;
+import SiteData.entity.RoleType;
 import webframework.impls.WebClassFramework;
 import webframework.impls.WebMethodFramework;
 

@@ -3,9 +3,8 @@ package com.shyslav.controller;
 import com.shyslav.impls.UserVariables;
 import com.shyslav.utils.GlobalController;
 import com.shyslav.validations.DatabaseValidations;
-import database.insert.DatabaseInsert;
-import webframework.entity.RoleType;
-import webframework.entity.UserStorage;
+import SiteData.entity.RoleType;
+import SiteData.storage.UserStorage;
 import webframework.impls.WebClassFramework;
 import webframework.impls.WebMethodFramework;
 
@@ -38,15 +37,11 @@ public class LoginController extends GlobalController {
     @WebMethodFramework(role = RoleType.GUEST, url = "signin", jspPath = "ajax")
     public void signin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserStorage userStorage = (UserStorage) request.getSession().getAttribute("userstorage");
-        if(userStorage.getAmounLogin() < UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS) {
+        if(userStorage.getAmountLogin() < UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS) {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             System.out.println(login + " " + password);
-            if (DatabaseValidations.checkUser(login, password,userStorage.getIpAddress())) {
-                System.out.println("login");
-            } else {
-                userStorage.increase();
-            }
+            DatabaseValidations.checkUser(login, password,userStorage.getIpAddress(),userStorage);
         }
         response.sendRedirect("/login");
     }

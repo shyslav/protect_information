@@ -1,4 +1,6 @@
+<%@ page import="SiteData.storage.UserStorage" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -28,6 +30,7 @@
                     <a href="#contact">Contact</a>
                 </li>
             </ul>
+            <%if(storage.getUser()==null){%>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="/login">Login</a>
@@ -36,6 +39,7 @@
                     <a href="/login/logout">Logout</a>
                 </li>
             </ul>
+            <%}%>
         </div>
     </div>
 </nav>

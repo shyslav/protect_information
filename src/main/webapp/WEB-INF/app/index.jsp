@@ -1,4 +1,4 @@
-<%@ page import="webframework.entity.UserStorage" %><%--
+<%@ page import="SiteData.storage.UserStorage" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/10/16
@@ -18,7 +18,7 @@
     <%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
     <%if(storage!=null){
         out.print(storage.getIpAddress()  + "<br>");
-        out.print(storage.getAmounLogin()  + "<br>");
+        out.print(storage.getAmountLogin()  + "<br>");
     }%>
     TEST:${test}
 </div>
