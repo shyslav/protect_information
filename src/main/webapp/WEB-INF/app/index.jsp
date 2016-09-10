@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.shyslav.data.UserStorage" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/10/16
@@ -15,4 +15,10 @@
             <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
         </p>
     </div>
+    <%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
+    <%if(storage!=null){
+        out.print(storage.getIpAddress()  + "<br>");
+        out.print(storage.getHwid()  + "<br>");
+        out.print(storage.getAmounLogin()  + "<br>");
+    }%>
 </div>
