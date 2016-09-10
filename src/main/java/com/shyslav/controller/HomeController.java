@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * Created by shyshkin_vlad on 10.04.16.
  */
 @SuppressWarnings("unused")
-@WebClassFramework(layout = "custom", urlPath = "index")
+@WebClassFramework(layout = "custom", urlPath = {"index","/",""})
 public class HomeController extends GlobalController {
     private static final Logger log = Logger.getLogger(HomeController.class.getName());
 
