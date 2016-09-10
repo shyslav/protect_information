@@ -19,7 +19,9 @@ public abstract class DatabaseValidations {
     public static boolean checkUser(String login, String password, String ip, UserStorage storage) {
         try {
             PreparedStatement preparedStatement =
-                    db.getConnection().prepareStatement("SELECT * FROM user WHERE login = ? AND password = md5(?)");
+                    db.getConnection().prepareStatement("SELECT * FROM user " +
+                            "inner join role on role.id = user.role " +
+                            "WHERE login = ? AND password = md5(?)");
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet rs = preparedStatement.executeQuery();
@@ -27,7 +29,7 @@ public abstract class DatabaseValidations {
                 User user = new User(
                         rs.getInt("id"),
                         rs.getString("login"),
-                        storage.getRoleByID(rs.getInt("role")));
+                        rs.getString("name"));
                 storage.setUser(user);
                 DatabaseInsert.prepareInsert("login_data",
                         new Object[]{login, "-", LazyDate.getUnixDate(), ip, "success"},
