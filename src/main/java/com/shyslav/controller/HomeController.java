@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class HomeController extends GlobalController {
     private static final Logger log = Logger.getLogger(HomeController.class.getName());
 
-    @WebMethodFramework(role = RoleType.USER, jspPath = "index")
+    @WebMethodFramework(role = RoleType.GUEST, jspPath = "index")
     public void indexPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         System.out.println("enter");
         request.setAttribute("test","lol");
