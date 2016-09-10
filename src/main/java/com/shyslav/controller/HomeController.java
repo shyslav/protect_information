@@ -21,6 +21,7 @@ public class HomeController extends GlobalController {
 
     @WebMethodFramework(role = RoleType.USER, jspPath = "index")
     public void indexPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println("enter");
         request.setAttribute("test","lol");
     }
 }

@@ -20,4 +20,5 @@
         out.print(storage.getIpAddress()  + "<br>");
         out.print(storage.getAmounLogin()  + "<br>");
     }%>
+    TEST:${test}
 </div>
