@@ -9,9 +9,11 @@
 <div class="container">
     <div class="col-lg-12">
         <form action="/login/signin" method="POST">
-            <input class="form-group" type="text" placeholder="login" id="login" name="login" required>
-            <input class="form-group" type="password" id="password" name="password" required>
-            <input type="submit">
+            <label for="login"> Login: </label>
+            <input class="form-control" type="text" placeholder="login" id="login" name="login" required>
+            <label for="password"> Password:</label>
+            <input class="form-control" type="password" id="password" name="password" required>
+            <input type="submit" class="btn btn-default">
         </form>
     </div>
 </div>
