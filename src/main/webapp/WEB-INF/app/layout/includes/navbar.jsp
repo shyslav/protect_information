@@ -1,4 +1,4 @@
-<%@ page import="SiteData.storage.UserStorage" %>
+<%@ page import="siteentity.storage.UserStorage" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
 

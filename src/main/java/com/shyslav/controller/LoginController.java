@@ -3,8 +3,8 @@ package com.shyslav.controller;
 import com.shyslav.impls.UserVariables;
 import com.shyslav.utils.GlobalController;
 import com.shyslav.validations.DatabaseValidations;
-import SiteData.entity.RoleType;
-import SiteData.storage.UserStorage;
+import siteentity.entity.RoleType;
+import siteentity.storage.UserStorage;
 import webframework.impls.WebClassFramework;
 import webframework.impls.WebMethodFramework;
 

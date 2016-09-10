@@ -1,4 +1,4 @@
-<%@ page import="SiteData.storage.UserStorage" %><%--
+<%@ page import="siteentity.storage.UserStorage" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/10/16

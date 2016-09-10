@@ -1,10 +1,10 @@
 package com.shyslav.validations;
 
-import SiteData.storage.UserStorage;
+import siteentity.storage.UserStorage;
 import database.configuration.DatabaseConnection;
 import database.insert.DatabaseInsert;
 import lazyfunction.LazyDate;
-import SiteData.entity.User;
+import siteentity.entity.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
