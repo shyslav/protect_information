@@ -1,7 +1,5 @@
 package com.shyslav.utils;
 
-import org.springframework.ui.ModelMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Logger;
@@ -14,7 +12,7 @@ public class GlobalController {
     protected void set(HttpServletRequest request, HttpServletResponse response){
 
     }
-    protected void setPageTitle(ModelMap map, String title) {
-        map.put("title", title);
+    protected void setPageTitle(HttpServletRequest req, String title) {
+        req.setAttribute("title", title);
     }
 }

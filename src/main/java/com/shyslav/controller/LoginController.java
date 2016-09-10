@@ -19,15 +19,15 @@ import java.util.logging.Logger;
 public class LoginController extends GlobalController {
     private static final Logger log = Logger.getLogger(LoginController.class.getName());
 
-    @WebMethodFramework(role = RoleType.USER, url = "login")
+    @WebMethodFramework(role = RoleType.USER, url = "login", jspPath = "ajax")
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.getWriter().print("login ");
-        //request.getRequestDispatcher("/WEB-INF/app/index.jsp").forward(request, response);
+        //request.getRequestDispatcher("/WEB-INF/app/custom.jsp").forward(request, response);
     }
 
-    @WebMethodFramework(role = RoleType.USER, url = "logout")
+    @WebMethodFramework(role = RoleType.USER, url = "logout", jspPath = "ajax")
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.getWriter().print("logout ");
-        //request.getRequestDispatcher("/WEB-INF/app/index.jsp").forward(request, response);
+        //request.getRequestDispatcher("/WEB-INF/app/custom.jsp").forward(request, response);
     }
 }

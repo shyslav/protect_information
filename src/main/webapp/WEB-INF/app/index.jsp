@@ -1,6 +1,11 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: shyslav
+  Date: 9/10/16
+  Time: 7:03 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="layout/header.jsp"/>
-<jsp:include page="layout/navbar.jsp"/>
 <div class="container">
     <div class="jumbotron">
         <h1>Navbar example</h1>
@@ -11,6 +16,3 @@
         </p>
     </div>
 </div>
-<jsp:include page="layout/footer.jsp"/>
-
-

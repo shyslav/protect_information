@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 public class HomeController extends GlobalController {
     private static final Logger log = Logger.getLogger(HomeController.class.getName());
 
-    @WebMethodFramework(role = RoleType.USER, url = "")
-    public void test(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/app/index.jsp").forward(request, response);
+    @WebMethodFramework(role = RoleType.USER, jspPath = "index")
+    public void indexPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.getRequestDispatcher("/WEB-INF/app/layout/custom.jsp").forward(request, response);
     }
 }
