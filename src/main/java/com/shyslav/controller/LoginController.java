@@ -31,8 +31,9 @@ public class LoginController extends GlobalController {
 
     @WebMethodFramework(role = {RoleType.ADMIN, RoleType.USER}, url = "logout", jspPath = "ajax")
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.getWriter().print("logout ");
-        //request.getRequestDispatcher("/WEB-INF/app/custom.jsp").forward(request, response);
+        UserStorage userStorage = (UserStorage) request.getSession().getAttribute("userstorage");
+        userStorage.logout();
+        response.sendRedirect("/login");
     }
 
     @WebMethodFramework(role = RoleType.GUEST, url = "signin", jspPath = "ajax")

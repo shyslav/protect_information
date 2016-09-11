@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="siteentity.storage.UserStorage" %>
+<%@ page import="siteentity.entity.RoleType" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%UserStorage storage = (UserStorage) session.getAttribute("userstorage");%>
 
@@ -30,16 +32,23 @@
                     <a href="#contact">Contact</a>
                 </li>
             </ul>
-            <%if(storage.getUser()==null){%>
             <ul class="nav navbar-nav navbar-right">
+                <%if (storage.getUser() == null) {%>
                 <li>
                     <a href="/login">Login</a>
                 </li>
+                <%}%>
+                <%if (storage.getUser() != null) {%>
                 <li>
                     <a href="/login/logout">Logout</a>
                 </li>
+                <%}%>
+                <%if (storage.getUser()!= null && storage.getUser().getRole() == RoleType.ADMIN) {%>
+                <li>
+                    <a href="/admin">Admin panel</a>
+                </li>
+                <%}%>
             </ul>
-            <%}%>
         </div>
     </div>
 </nav>
