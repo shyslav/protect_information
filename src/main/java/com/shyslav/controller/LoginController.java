@@ -1,5 +1,6 @@
 package com.shyslav.controller;
 
+import lazyfunction.LazyBootstrap;
 import webframework.impls.UserVariables;
 import com.shyslav.utils.GlobalController;
 import com.shyslav.validations.DatabaseValidations;
@@ -45,6 +46,11 @@ public class LoginController extends GlobalController {
                 response.sendRedirect("/");
                 return;
             }
+        }
+        if (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS > userStorage.getAmountLogin()) {
+            request.getSession().setAttribute("flash_message", LazyBootstrap.generateAlert("danger", "Wrong user",
+                    "You have " + (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS - userStorage.getAmountLogin())
+                            + " attempt"));
         }
         response.sendRedirect("/login");
     }
