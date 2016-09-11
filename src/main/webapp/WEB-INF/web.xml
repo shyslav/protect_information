@@ -39,13 +39,19 @@
     </welcome-file-list>
 
     <error-page>
-        <!-- Missing login -->
+        <!-- Access error -->
         <error-code>401</error-code>
         <location>/error_401.html</location>
     </error-page>
     <error-page>
         <!-- Unsupported servlet method -->
         <error-code>503</error-code>
+        <location>/error_401.html</location>
+    </error-page>
+
+    <error-page>
+        <!-- Moved to ban -->
+        <error-code>302</error-code>
         <location>/error_401.html</location>
     </error-page>
 </web-app>

@@ -41,7 +41,7 @@ public abstract class DatabaseValidations {
         }
         storage.increase();
         DatabaseInsert.prepareInsert("login_data",
-                new Object[]{login, password, (int) System.currentTimeMillis() / 1000, ip, "error"},
+                new Object[]{login, password, LazyDate.getUnixDate(), ip, "error"},
                 new String[]{"login", "password", "login_time", "ip", "status"});
         return false;
     }

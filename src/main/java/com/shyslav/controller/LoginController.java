@@ -1,6 +1,6 @@
 package com.shyslav.controller;
 
-import com.shyslav.impls.UserVariables;
+import webframework.impls.UserVariables;
 import com.shyslav.utils.GlobalController;
 import com.shyslav.validations.DatabaseValidations;
 import siteentity.entity.RoleType;
@@ -28,7 +28,7 @@ public class LoginController extends GlobalController {
         //request.getRequestDispatcher("/WEB-INF/app/custom.jsp").forward(request, response);
     }
 
-    @WebMethodFramework(role = {RoleType.ADMIN,RoleType.USER}, url = "logout", jspPath = "ajax")
+    @WebMethodFramework(role = {RoleType.ADMIN, RoleType.USER}, url = "logout", jspPath = "ajax")
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.getWriter().print("logout ");
         //request.getRequestDispatcher("/WEB-INF/app/custom.jsp").forward(request, response);
@@ -37,11 +37,14 @@ public class LoginController extends GlobalController {
     @WebMethodFramework(role = RoleType.GUEST, url = "signin", jspPath = "ajax")
     public void signin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserStorage userStorage = (UserStorage) request.getSession().getAttribute("userstorage");
-        if(userStorage.getAmountLogin() < UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS) {
+        if (userStorage.getAmountLogin() < UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS) {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
             System.out.println(login + " " + password);
-            DatabaseValidations.checkUser(login, password,userStorage.getIpAddress(),userStorage);
+            if (DatabaseValidations.checkUser(login, password, userStorage.getIpAddress(), userStorage)) {
+                response.sendRedirect("/");
+                return;
+            }
         }
         response.sendRedirect("/login");
     }
