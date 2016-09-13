@@ -1,5 +1,7 @@
 package com.shyslav.utils;
 
+import lazyfunction.LazyBootstrap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Logger;
@@ -14,5 +16,9 @@ public class GlobalController {
     }
     protected void setPageTitle(HttpServletRequest req, String title) {
         req.setAttribute("title", title);
+    }
+
+    protected void setFlashMessage(HttpServletRequest request,String message){
+        request.getSession().setAttribute("flash_message",message);
     }
 }

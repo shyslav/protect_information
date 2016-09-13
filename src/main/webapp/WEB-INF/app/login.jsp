@@ -16,7 +16,7 @@
             <label for="login"> Login: </label>
             <input class="form-control" type="text" placeholder="login" id="login" name="login" required>
             <label for="password"> Password:</label>
-            <input class="form-control" type="password" id="password" name="password" placeholder="password" required>
+            <input class="form-control" type="password" id="password" name="password" placeholder="password">
             <br>
             <input type="submit" class="btn btn-default">
         </form>
