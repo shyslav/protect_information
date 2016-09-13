@@ -1,5 +1,6 @@
 <%@ page import="com.shyslav.models.UserList" %>
-<%@ page import="siteentity.entity.User" %><%--
+<%@ page import="siteentity.entity.User" %>
+<%@ page import="siteentity.entity.RoleType" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/11/16
@@ -16,18 +17,55 @@
     %>
 
     <div class="col-lg-12">
-        <table>
+        <table class="table">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Role
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+            <%
+                UserList userList = (UserList) request.getAttribute("userList");
+                if (userList != null) {
+                    for (User user : userList) {
+            %>
+            <%String selector = user.getRole() == RoleType.BLOCKED ? "danger" : "success";%>
 
+            <tr class="<%=selector%>" id="user_<%=user.getId()%>">
+                <td>
+                    <%=user.getId()%>
+                </td>
+                <td>
+                    <%=user.getLogin()%>
+                </td>
+                <td>
+                    <%=user.getRole()%>
+                </td>
+                <td>
+                    <button  onclick="blockUser(<%=user.getId()%>);" class="btn btn-danger">Block</button>
+                </td>
+            </tr>
+            <%
+                    }
+                }
+            %>
         </table>
     </div>
-    <%
-        UserList userList = (UserList) request.getAttribute("userList");
-        if (userList != null) {
-            for (User user : userList) {
-    %>
-        <%=user.getLogin()%>
-    <%
-            }
-        }
-    %>
+
 </div>
+<script>
+    function blockUser(userID) {
+        <%--href="/admin/block?id=<%=user.getId()%>"--%>
+        console.log("user_"+userID);
+        document.getElementById("user_"+userID).className = "danger";
+        console.log(userID)
+    }
+</script>
