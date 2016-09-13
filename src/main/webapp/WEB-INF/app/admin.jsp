@@ -9,6 +9,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    table,th,td,tr,tbody {
+        text-align: center;
+    }
+</style>
 <div class="container">
     <div class="col-lg-12">
         <div id="flash_message">
@@ -27,6 +32,7 @@
               </span>
             </div>
         </form>
+        <br>
         <table class="table">
             <tr>
                 <th>
@@ -38,7 +44,7 @@
                 <th>
                     Role
                 </th>
-                <th>
+                <th style="width:10%">
                     Action
                 </th>
             </tr>
@@ -60,7 +66,11 @@
                     <%=user.getRole()%>
                 </td>
                 <td>
+                    <%if(selector.equals("success")){%>
                     <button onclick="blockUser(<%=user.getId()%>);" class="btn btn-danger">Block</button>
+                    <%}else {%>
+                    <button onclick="unBlockUser(<%=user.getId()%>);" class="btn btn-danger">Unblock</button>
+                    <%}%>
                 </td>
             </tr>
             <%
@@ -83,6 +93,28 @@
                 success: function (content) {
                     document.getElementById("flash_message").innerHTML = content;
                     document.getElementById("user_" + userID).className = "danger";
+                },
+                error: function () {
+                    document.getElementById("flash_message").innerHTML
+                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You can block himself")%>";
+                }
+            });
+        } else {
+            return false;
+        }
+    }
+
+    function unBlockUser(userID) {
+        if (confirm("Unblock user")) {
+            $.ajax({
+                url: "/admin/unblock",
+                method: "POST",
+                data: {
+                    id: userID
+                },
+                success: function (content) {
+                    document.getElementById("flash_message").innerHTML = content;
+                    document.getElementById("user_" + userID).className = "success";
                 },
                 error: function () {
                     document.getElementById("flash_message").innerHTML

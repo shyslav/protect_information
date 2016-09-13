@@ -53,6 +53,19 @@ public class AdminController extends GlobalController {
         }
     }
 
+    @WebMethodFramework(role = RoleType.ADMIN, url = "unblock", jspPath = "ajax")
+    public void unblockUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        UserStorage userStorage = (UserStorage) request.getSession().getAttribute("userstorage");
+
+        if (userStorage.getUser().getId() != id) {
+            DatabaseFunc.unBlockUser(id);
+            response.getWriter().print(LazyBootstrap.generateAlert("success", "Success", "User ublocked"));
+        } else {
+            response.sendError(404);
+        }
+    }
+
     @WebMethodFramework(role = RoleType.ADMIN, url = "add", jspPath = "ajax")
     public void addNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         final String password = LazyMD5.md5("12345");
