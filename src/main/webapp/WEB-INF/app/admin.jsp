@@ -19,6 +19,14 @@
                 }
             %>
         </div>
+        <form action="/admin/add" method="POST">
+        <div class="input-group">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Add new user</button>
+              </span>
+        </div>
+        </form>
         <table class="table">
             <tr>
                 <th>

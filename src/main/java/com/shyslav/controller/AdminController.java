@@ -48,4 +48,8 @@ public class AdminController {
             response.sendError(404);
         }
     }
+    @WebMethodFramework(role = RoleType.ADMIN, url = "add", jspPath = "ajax")
+    public void addNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+    }
 }
