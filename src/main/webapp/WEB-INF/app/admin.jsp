@@ -1,6 +1,7 @@
 <%@ page import="com.shyslav.models.UserList" %>
 <%@ page import="siteentity.entity.User" %>
-<%@ page import="siteentity.entity.RoleType" %><%--
+<%@ page import="siteentity.entity.RoleType" %>
+<%@ page import="lazyfunction.LazyBootstrap" %><%--
   Created by IntelliJ IDEA.
   User: shyslav
   Date: 9/11/16
@@ -9,14 +10,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
-    <%
-        if (request.getSession().getAttribute("flash_message") != null) {
-            out.print(request.getSession().getAttribute("flash_message"));
-            request.getSession().removeAttribute("flash_message");
-        }
-    %>
-
     <div class="col-lg-12">
+        <div id="flash_message">
+            <%
+                if (request.getSession().getAttribute("flash_message") != null) {
+                    out.print(request.getSession().getAttribute("flash_message"));
+                    request.getSession().removeAttribute("flash_message");
+                }
+            %>
+        </div>
         <table class="table">
             <tr>
                 <th>
@@ -50,7 +52,7 @@
                     <%=user.getRole()%>
                 </td>
                 <td>
-                    <button  onclick="blockUser(<%=user.getId()%>);" class="btn btn-danger">Block</button>
+                    <button onclick="blockUser(<%=user.getId()%>);" class="btn btn-danger">Block</button>
                 </td>
             </tr>
             <%
@@ -63,9 +65,24 @@
 </div>
 <script>
     function blockUser(userID) {
-        <%--href="/admin/block?id=<%=user.getId()%>"--%>
-        console.log("user_"+userID);
-        document.getElementById("user_"+userID).className = "danger";
-        console.log(userID)
+        if (confirm("Block user")) {
+            $.ajax({
+                url: "/admin/block",
+                method: "POST",
+                data: {
+                    id: userID
+                },
+                success: function (content) {
+                    document.getElementById("flash_message").innerHTML = content;
+                    document.getElementById("user_" + userID).className = "danger";
+                },
+                error: function () {
+                    document.getElementById("flash_message").innerHTML
+                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You can block himself")%>";
+                }
+            });
+        } else {
+            return false;
+        }
     }
 </script>
