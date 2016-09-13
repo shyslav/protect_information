@@ -29,6 +29,7 @@ public abstract class DatabaseValidations {
                 User user = new User(
                         rs.getInt("id"),
                         rs.getString("login"),
+                        rs.getString("password"),
                         rs.getString("name"));
                 storage.setUser(user);
                 DatabaseInsert.prepareInsert("login_data",

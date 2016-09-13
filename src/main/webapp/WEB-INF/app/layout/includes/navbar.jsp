@@ -40,6 +40,9 @@
                 <%}%>
                 <%if (storage.getUser() != null) {%>
                 <li>
+                    <a href="/profile">Profile</a>
+                </li>
+                <li>
                     <a href="/login/logout">Logout</a>
                 </li>
                 <%}%>

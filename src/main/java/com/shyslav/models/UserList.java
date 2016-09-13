@@ -16,7 +16,7 @@ public class UserList extends ArrayList<User> {
     HashMap<Integer, User> map;
 
     public UserList() {
-        this.map = new HashMap<Integer, User>();
+        this.map = new HashMap<>();
         selectUserList();
     }
 
@@ -26,12 +26,12 @@ public class UserList extends ArrayList<User> {
 
     private void selectUserList() {
         DatabaseConnection databaseConnection = new DatabaseConnection();
-        String query = "select user.id,user.login,role.name from user inner join role on user.role = role.id";
+        String query = "select user.id,user.login,role.name, user.password from user inner join role on user.role = role.id";
         try {
             PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                map.put(rs.getInt("id"), new User(rs.getInt("id"), rs.getString("login"), rs.getString("name")));
+                map.put(rs.getInt("id"), new User(rs.getInt("id"), rs.getString("login"),rs.getString("password"), rs.getString("name")));
                 super.add(map.get(map.size()));
             }
         } catch (SQLException e) {

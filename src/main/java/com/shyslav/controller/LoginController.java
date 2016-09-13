@@ -55,4 +55,26 @@ public class LoginController extends GlobalController {
         }
         response.sendRedirect("/login");
     }
+
+    @WebMethodFramework(role = {RoleType.USER, RoleType.ADMIN}, url = "checkpass", jspPath = "ajax")
+    public void checkPass(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        UserStorage storage = (UserStorage) request.getSession().getAttribute("userstorage");
+        if (request.getMethod().equalsIgnoreCase("POST")) {
+            String password = request.getParameter("password");
+            if (password != null)
+                if (storage.getUser().checkPass(password)) {
+                    response.getWriter().print("OK");
+                    request.getSession().setAttribute("checkpass", "ok");
+                    return;
+                }
+        }
+        storage.increase();
+        if (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS <= storage.getAmountLogin()) {
+            response.sendError(303);
+        } else {
+            response.getWriter().print(LazyBootstrap.generateAlert("danger", "Wrong password",
+                    "You have " + (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS - storage.getAmountLogin())
+                            + " attempt"));
+        }
+    }
 }
