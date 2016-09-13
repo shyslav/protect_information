@@ -5,6 +5,7 @@ package com.shyslav.validations;
  */
 public class PasswordValidations {
     private static final int MIN_PASS_LENGTH = 3;
+    private static final int MAX_PASS_LENGTH = 20;
 
     public static boolean validate(String str1, String str2){
         if(!equestlsValidation(str1,str2)){
@@ -22,6 +23,9 @@ public class PasswordValidations {
 
     private static boolean lengthValidation(String str1, String str2) {
         if (str1.length() <= MIN_PASS_LENGTH || str2.length() <= MIN_PASS_LENGTH) {
+            return false;
+        }
+        if (str1.length() > MAX_PASS_LENGTH || str2.length() > MAX_PASS_LENGTH) {
             return false;
         }
         return true;

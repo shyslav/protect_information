@@ -70,7 +70,7 @@ public class LoginController extends GlobalController {
         }
         storage.increase();
         if (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS <= storage.getAmountLogin()) {
-            response.sendError(303);
+            response.sendError(302);
         } else {
             response.getWriter().print(LazyBootstrap.generateAlert("danger", "Wrong password",
                     "You have " + (UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS - storage.getAmountLogin())
