@@ -96,7 +96,7 @@
                 },
                 error: function () {
                     document.getElementById("flash_message").innerHTML
-                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You can block himself")%>";
+                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You can't block himself")%>";
                 }
             });
         } else {
@@ -118,7 +118,7 @@
                 },
                 error: function () {
                     document.getElementById("flash_message").innerHTML
-                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You can block himself")%>";
+                            = "<%=LazyBootstrap.generateAlert("danger","Error", "You cant block himself")%>";
                 }
             });
         } else {
