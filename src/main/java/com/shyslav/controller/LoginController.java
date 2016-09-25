@@ -42,7 +42,6 @@ public class LoginController extends GlobalController {
         if (userStorage.getAmountLogin() < UserVariables.AMOUN_WRONK_PASSWORD_ATTEMPTS) {
             String login = request.getParameter("login");
             String password = request.getParameter("password");
-            System.out.println(login + " " + password);
             if (DatabaseValidations.checkUser(login, password, userStorage.getIpAddress(), userStorage)) {
                 response.sendRedirect("/");
                 return;

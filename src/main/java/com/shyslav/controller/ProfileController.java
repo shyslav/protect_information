@@ -1,8 +1,10 @@
 package com.shyslav.controller;
 
 import com.shyslav.validations.PasswordValidations;
+import database.updateCommand.UpdateCommand;
 import lazyfunction.LazyBootstrap;
 import siteentity.entity.RoleType;
+import siteentity.storage.UserStorage;
 import webframework.impls.UserVariables;
 import webframework.impls.WebClassFramework;
 import webframework.impls.WebMethodFramework;
@@ -34,6 +36,7 @@ public class ProfileController {
         if (request.getMethod().equalsIgnoreCase("POST")){
             String pass = request.getParameter("password");
             String confpass = request.getParameter("confirm_password");
+            UserStorage storage = (UserStorage) request.getSession().getAttribute("userstorage");
             if (confpass == null || pass == null){
                 request.getSession().setAttribute("checkpass", "ok");
                 request.getSession().setAttribute("flash_message", LazyBootstrap.generateAlert("danger", "Wrong data",
@@ -48,7 +51,8 @@ public class ProfileController {
                 response.sendRedirect("/profile/settings");
                 return;
             }else {
-                response.sendRedirect("/login/signout");
+                UpdateCommand.updateTable("user",new String[]{"password=md5("+pass+")"},new String[]{"id="+storage.getUser().getId()});
+                response.sendRedirect("/login/logout");
             }
         }
     }

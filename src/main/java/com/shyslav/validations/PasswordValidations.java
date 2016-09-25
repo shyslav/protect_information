@@ -1,5 +1,8 @@
 package com.shyslav.validations;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by shyslav on 9/13/16.
  */
@@ -7,11 +10,14 @@ public class PasswordValidations {
     private static final int MIN_PASS_LENGTH = 3;
     private static final int MAX_PASS_LENGTH = 20;
 
-    public static boolean validate(String str1, String str2){
-        if(!equestlsValidation(str1,str2)){
+    public static boolean validate(String str1, String str2) {
+        if (!equestlsValidation(str1, str2)) {
             return false;
         }
-        if (!lengthValidation(str1,str2)){
+        if (!lengthValidation(str1, str2)) {
+            return false;
+        }
+        if (!validatePattern(str1)) {
             return false;
         }
         return true;
@@ -30,4 +36,11 @@ public class PasswordValidations {
         }
         return true;
     }
+
+    private static boolean validatePattern(String password) {
+        Pattern p = Pattern.compile("^\\d*");
+        Matcher m = p.matcher(password);
+        return m.matches();
+    }
+
 }
