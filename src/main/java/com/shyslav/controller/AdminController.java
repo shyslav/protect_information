@@ -76,6 +76,11 @@ public class AdminController extends GlobalController {
             }
             UserList userList = new UserList();
             String name = request.getParameter("name");
+            if(name == null || name.length()<3){
+                setFlashMessage(request, LazyBootstrap.generateAlert("danger", "User name error", "User name null or length<3"));
+                response.sendRedirect("/admin");
+                return;
+            }
             for (User user : userList) {
                 if (user.getLogin().equals(name)) {
                     setFlashMessage(request, LazyBootstrap.generateAlert("danger", "User name error", "User already exist"));
@@ -83,7 +88,7 @@ public class AdminController extends GlobalController {
                     return;
                 }
             }
-            DatabaseInsert.prepareInsert("user", new Object[]{name, 2}, new String[]{"login", "role"});
+            DatabaseInsert.prepareInsert("user", new Object[]{name, 2, password}, new String[]{"login", "role", "password"});
             setFlashMessage(request, LazyBootstrap.generateAlert("success", "Success add new user", "User added to user list"));
             response.sendRedirect("/admin");
 

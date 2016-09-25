@@ -20,6 +20,12 @@ public class UserList extends ArrayList<User> {
         selectUserList();
     }
 
+    @Override
+    public boolean add(User user) {
+        map.put(user.getId(),user);
+        return super.add(user);
+    }
+
     public void getByID(int id) {
         map.get(id);
     }
@@ -31,8 +37,7 @@ public class UserList extends ArrayList<User> {
             PreparedStatement preparedStatement = databaseConnection.getConnection().prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                map.put(rs.getInt("id"), new User(rs.getInt("id"), rs.getString("login"),rs.getString("password"), rs.getString("name")));
-                super.add(map.get(map.size()));
+                this.add(new User(rs.getInt("id"), rs.getString("login"),rs.getString("password"), rs.getString("name")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
