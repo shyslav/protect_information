@@ -1,6 +1,10 @@
 package com.shyslav.controller;
 
 import com.shyslav.utils.GlobalController;
+import lazyfunction.LazyComputerInfo;
+import lazyfunction.models.DriverInfo;
+import licenseframe.InitialLicence;
+import licenseframe.users.LicensedUsers;
 import siteentity.entity.RoleType;
 import webframework.impls.WebClassFramework;
 import webframework.impls.WebMethodFramework;
@@ -31,6 +35,20 @@ public class HomeController extends GlobalController {
 
     @WebMethodFramework(role = {RoleType.ADMIN,RoleType.USER,RoleType.GUEST}, jspPath = "index")
     public void indexPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        LicensedUsers user = new LicensedUsers();
+        user.setUserName(LazyComputerInfo.getUserName());
+        user.setComputerName(LazyComputerInfo.getComputerName());
+        user.setSystem(LazyComputerInfo.getOSName());
+        user.setDiskTotalSpace(LazyComputerInfo.getDriverInfo().get(0).getTotalSpace());
+
+        Dimension screen = LazyComputerInfo.getScreenSize();
+
+        request.setAttribute("user", user);
+        request.setAttribute("screen", screen);
+        request.setAttribute("currentdir",LazyComputerInfo.getCurrentDir());
+        request.setAttribute("mouselist",LazyComputerInfo.getLinuxMouseDevice());
+        request.setAttribute("checkLicense",InitialLicence.checkLicense());
+        request.setAttribute("licenseMd5",InitialLicence.generateComputerDataMd5());
         request.setAttribute("test","testData");
     }
 }
