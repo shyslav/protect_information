@@ -55,4 +55,10 @@
         <error-code>302</error-code>
         <location>/error_302.html</location>
     </error-page>
+
+    <error-page>
+        <!-- License error -->
+        <error-code>999</error-code>
+        <location>/error_999.html</location>
+    </error-page>
 </web-app>
