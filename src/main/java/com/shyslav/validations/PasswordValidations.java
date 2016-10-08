@@ -17,9 +17,9 @@ public class PasswordValidations {
         if (!lengthValidation(str1, str2)) {
             return false;
         }
-        if (!validatePattern(str1)) {
-            return false;
-        }
+//        if (!validatePattern(str1)) {
+//            return false;
+//        }
         return true;
     }
 
