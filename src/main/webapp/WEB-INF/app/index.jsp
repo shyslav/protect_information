@@ -1,5 +1,5 @@
 <%@ page import="siteentity.storage.UserStorage" %>
-<%@ page import="licenseframe.users.LicensedUsers" %>
+<%@ page import="licenseframe.users.LicensedUser" %>
 <%@ page import="java.awt.*" %>
 <%@ page import="lazyfunction.LazyComputerInfo" %>
 <%@ page import="java.util.ArrayList" %><%--
@@ -22,7 +22,7 @@
     </div>
     <%
         UserStorage storage = (UserStorage) session.getAttribute("userstorage");
-        LicensedUsers user = (LicensedUsers) request.getAttribute("user");
+        LicensedUser user = (LicensedUser) request.getAttribute("user");
         Dimension screen = (Dimension) request.getAttribute("screen");
         ArrayList<String> mouses = (ArrayList<String>) request.getAttribute("mouselist");
         String currentDir = (String) request.getAttribute("currentdir");
